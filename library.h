@@ -112,8 +112,6 @@ int findAll_records(pRecord* records);
 int is_overdue(pUser user,pRecord* records);//没有逾期返回false，逾期返回罚款金额，并写入文件
 //定义写入所有用户的函数
 int write_users(FILE* fp, pUser* users);
-//定义用户查看借阅次数前十的书籍
-int find_advanced_book();
 //定义用户修改信息的函数
 int update_user(pUser user);
 

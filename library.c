@@ -622,19 +622,46 @@ void pritlnAll_fines()
 	}
 	pUser users = NULL;
 	findAll_user(fp, &users);
+	fclose(fp);
+	sort_users(&users);
+	pUser head = users;
+	printf("姓名\t罚款\n");
+	while (head)
+	{
+		printf("%s\t:%d\n", head->user_name, head->fine);
+		head = head->next;
+	}
+	//释放内存
+	destory_users(users);
 	
 }
 //根据罚款多少排序
 int sort_users(pUser* users)
 {
 	pUser head = *users;
-	pUser current = NULL, previous = NULL;
+	pUser current = NULL, new = NULL;
 	int len = len_linked(head);
 	for (int i = 0; i < len-1; i++)
 	{
+		current = head;
 		for (int j = 0; j < len-i-1; j++)
 		{
-
+			new = current->next;
+			if (new==NULL)
+			{
+				break;
+			}
+			if (current->fine<new->fine)
+			{
+				char s[MAX] = "";
+				strcpy(s, current->user_name);
+				strcpy(current->user_name, new->user_name);
+				strcpy(new->user_name, s);
+				int tmp = current->fine;
+				current->fine = new->fine;
+				new->fine = tmp;
+			}
+			current = current->next;
 		}
 	}
 

@@ -179,7 +179,8 @@ start:	while (True)
 						Sleep(1000);
 						break;
 					case '8':
-						printf("显示罚款信息详情");
+						pritlnAll_fines();
+						Sleep(1000);
 						break;
 					case '9':
 						free(user);
